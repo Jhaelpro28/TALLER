@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Cita</title>
+</head>
+<body>
+    <div th:if="${cita != null}">
+        <h1>DETALLE CITA</h1>
+        <p><strong>ID:</strong><span th:text="${cita.id}"></span></p>
+        <p><strong>PACIENTE:</strong><span th:text="${cita.paciente.nombre}"></span></p>
+        <p><strong>DOCTOR:</strong><span th:text="${cita.doctor.nombre}"></span></p>
+        <p><strong>FECHA Y HORA:</strong><span th:text="${cita.fechaHora}"></span></p>
+        <p><strong>ESTADO:</strong><span th:text="${cita.estado}"></span></p>
+    </div>
+    <div th:if="${cita == null}">
+        <h1>CITA NO ENCONTRADA</h1>
+        <p>No existe ninguna cita registrada</p>
+    </div>
+    <a th:href="@{/citas}">volver a la lista</a>
+</body>
+</html>

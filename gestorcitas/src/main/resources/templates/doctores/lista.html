@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Doctores</title>
+</head>
+<body>
+        <nav>
+        <a th:href="@{/}">Inicio</a> |
+        <a th:href="@{/citas}">Citas</a> |
+        <a th:href="@{/pacientes}">Pacientes</a> |
+        <a th:href="@{/doctores}">Doctores</a>
+    </nav>
+    <h1>Doctores</h1>
+    <table border="1" cellpadding="6">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Especialidad</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="doctor : ${doctores}">
+                <td th:text="${doctor.id}"></td>
+                <td th:text="${doctor.nombre}"></td>
+                <td th:text="${doctor.especialidad}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

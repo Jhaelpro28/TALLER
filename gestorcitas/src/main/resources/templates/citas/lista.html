@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de cita</title>
+</head>
+<body>
+    <nav>
+        <a th:href="@{/}">Inicio</a> |
+        <a th:href="@{/citas}">Citas</a> |
+        <a th:href="@{/pacientes}">Pacientes</a> |
+        <a th:href="@{/doctores}">Doctores</a>
+    </nav>
+    <h1>CITA MEDICA</h1>
+    <table border="1" cellpadding="6">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>PACIENTES</th>
+                <th>DOCTOR</th>
+                <th>FECHA Y HORA</th>
+                <th>ESTADO</th>
+                <th>DETALLES</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="cita : ${citas}">
+                <td th:text="${cita.id}"></td>
+                <td th:text="${cita.paciente.nombre}"></td>
+                <td th:text="${cita.doctor.nombre}"></td>
+                <td th:text="${cita.fechaHora}"></td>
+                <td th:text="${cita.estado}"></td>
+                <td>
+                    <a href="@{/citas/{id}}(id=${cita.id})">ver</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
