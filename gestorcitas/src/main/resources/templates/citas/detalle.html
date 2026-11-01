@@ -3,21 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalle de Cita</title>
+    <title>Detalle de cita</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-    <div th:if="${cita != null}">
-        <h1>DETALLE CITA</h1>
-        <p><strong>ID:</strong><span th:text="${cita.id}"></span></p>
-        <p><strong>PACIENTE:</strong><span th:text="${cita.paciente.nombre}"></span></p>
-        <p><strong>DOCTOR:</strong><span th:text="${cita.doctor.nombre}"></span></p>
-        <p><strong>FECHA Y HORA:</strong><span th:text="${cita.fechaHora}"></span></p>
-        <p><strong>ESTADO:</strong><span th:text="${cita.estado}"></span></p>
-    </div>
-    <div th:if="${cita == null}">
-        <h1>CITA NO ENCONTRADA</h1>
-        <p>No existe ninguna cita registrada</p>
-    </div>
-    <a th:href="@{/citas}">volver a la lista</a>
+    <div th:replace="~{fragments/nav :: nav}"></div>
+
+    
+    <article class="ficha" th:if="${cita != null}">
+        <header class="ficha-cabecera">
+            <h1>Cita <span class="ficha-id" th:text="'#' + ${cita.id}"></span></h1>
+            <span class="estado" th:classappend="'estado-' + ${cita.estado}" th:text="${cita.estado}"></span>
+        </header>
+
+        <div class="ficha-fecha">
+            <span class="fecha-dia" th:text="${#temporals.format(cita.fechaHora, 'dd/MM/yyyy')}"></span>
+            <span class="fecha-hora" th:text="${#temporals.format(cita.fechaHora, 'HH:mm')}"></span>
+        </div>
+
+        <dl class="ficha-datos">
+            <div><dt>Paciente</dt><dd th:text="${cita.paciente.nombre}"></dd></div>
+            <div><dt>Teléfono</dt><dd th:text="${cita.paciente.telefono}"></dd></div>
+            <div><dt>Doctor</dt><dd th:text="${cita.doctor.nombre}"></dd></div>
+            <div><dt>Especialidad</dt><dd th:text="${cita.doctor.especialidad}"></dd></div>
+        </dl>
+
+        <footer class="ficha-acciones">
+            <th:block th:if="${cita.estado.name() == 'PENDIENTE'}">
+                <form th:action="@{/citas/{id}/estado(id=${cita.id})}" method="post">
+                    <input type="hidden" name="estado" value="COMPLETADA">
+                    <button type="submit">Completar</button>
+                </form>
+                <form th:action="@{/citas/{id}/estado(id=${cita.id})}" method="post">
+                    <input type="hidden" name="estado" value="CANCELADA">
+                    <button type="submit" class="btn-cancelar">Cancelar cita</button>
+                </form>
+            </th:block>
+            <a th:href="@{/citas}">Volver a la lista</a>
+        </footer>
+    </article>
+
+    
+    <article class="ficha ficha-vacia" th:if="${cita == null}">
+        <h1>Cita no encontrada</h1>
+        <p>No existe ninguna cita registrada con ese número.</p>
+        <a th:href="@{/citas}">Volver a la lista</a>
+    </article>
 </body>
 </html>

@@ -1,16 +1,36 @@
 package com.example.gestorcitas.Modelo;
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+
+
+@Entity 
 public class Cita {
+    @Id 
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne
     private Paciente paciente;
+
+    @ManyToOne 
     private Doctor doctor;
+    
     private LocalDateTime fechaHora;
+    
+
+    @Enumerated(EnumType.STRING)
     private EstadoCita estado;
 
-
-    public Cita(Long id, Paciente paciente, Doctor doctor, LocalDateTime fechaHora, EstadoCita estado){
-        this.id =id;
+    public Cita(){}
+    
+    public Cita(Paciente paciente, Doctor doctor, LocalDateTime fechaHora, EstadoCita estado){
         this.paciente = paciente;
         this.doctor = doctor;
         this.fechaHora = fechaHora;

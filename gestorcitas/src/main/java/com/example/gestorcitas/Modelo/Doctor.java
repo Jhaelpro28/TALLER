@@ -1,12 +1,24 @@
 package com.example.gestorcitas.Modelo;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+
+@Entity 
 public class Doctor {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false, length = 100)
     private String nombre;
     private String especialidad;
 
-    public Doctor(Long id, String nombre, String especialidad){
-        this.id = id;
+    public Doctor(){}
+
+    public Doctor(String nombre, String especialidad){
         this.nombre = nombre;
         this.especialidad = especialidad;
     }

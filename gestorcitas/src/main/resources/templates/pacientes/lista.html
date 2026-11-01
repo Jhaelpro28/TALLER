@@ -3,15 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Lista de Pacientes</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-    <nav>
-        <a th:href="@{/}">Inicio</a> |
-        <a th:href="@{/citas}">Citas</a> |
-        <a th:href="@{/pacientes}">Pacientes</a> |
-        <a th:href="@{/doctores}">Doctores</a>
-    </nav>
+    <div th:replace="~{fragments/nav :: nav}"></div>
     <h1>Pacientes</h1>
+    <p><a th:href="@{/pacientes/nuevo}">+ Nuevo paciente</a></p>
     <table border="1" cellpadding="6">
         <thead>
             <tr>
@@ -22,7 +19,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each="p : ${paciente}">
+            <tr th:each="p : ${pacientes}">
                 <td th:text="${p.id}"></td>
                 <td th:text="${p.nombre}"></td>
                 <td th:text="${p.documento}"></td>

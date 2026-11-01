@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nueva cita</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div th:replace="~{fragments/nav :: nav}"></div>
+    <h1>Nueva Cita</h1>
+    <form th:action="@{/citas}" method="post">
+    <p>Pacientes
+        <select name="pacienteId" required>
+        <option value="">----Elige----</option>
+        <option th:each="p : ${pacientes}" th:value="${p.id}" th:text="${p.nombre}"></option>
+    </select>
+    </p>
+            <p>Doctor:
+            <select name="doctorId" required>
+                <option value="">-- elige --</option>
+                <option th:each="d : ${doctores}" th:value="${d.id}"
+                        th:text="${d.nombre} + ' - ' + ${d.especialidad}"></option>
+            </select>
+        </p>
+    <p>Fecha y hora <input type="datetime-local" name="fechaHora" required></p>
+    <button type="submit">Guardar</button>
+    <a th:href="@{/citas}">Cancelar</a>
+    </form>
+</body>
+</html>

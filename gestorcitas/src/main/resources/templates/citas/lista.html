@@ -4,15 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de cita</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-    <nav>
-        <a th:href="@{/}">Inicio</a> |
-        <a th:href="@{/citas}">Citas</a> |
-        <a th:href="@{/pacientes}">Pacientes</a> |
-        <a th:href="@{/doctores}">Doctores</a>
-    </nav>
+    <div th:replace="~{fragments/nav :: nav}"></div>
     <h1>CITA MEDICA</h1>
+    <p><a th:href="@{/citas/nueva}">+ Nueva cita</a></p>
     <table border="1" cellpadding="6">
         <thead>
             <tr>
@@ -21,6 +18,7 @@
                 <th>DOCTOR</th>
                 <th>FECHA Y HORA</th>
                 <th>ESTADO</th>
+                <th>ESPECIALIDAD</th>
                 <th>DETALLES</th>
             </tr>
         </thead>
@@ -30,8 +28,9 @@
                 <td th:text="${cita.id}"></td>
                 <td th:text="${cita.paciente.nombre}"></td>
                 <td th:text="${cita.doctor.nombre}"></td>
-                <td th:text="${cita.fechaHora}"></td>
+                <td th:text="${#temporals.format(cita.fechaHora, 'dd/MM/yyyy HH:mm')}">></td>
                 <td th:text="${cita.estado}"></td>
+                <td th:text="${cita.doctor.especialidad}"></td>
                 <td>
                     <a th:href="@{/citas/{id}(id=${cita.id})}">ver</a>
                 </td>

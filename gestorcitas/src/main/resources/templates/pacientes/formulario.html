@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmls:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo paciente</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div th:replace="~{fragments/nav :: nav}"></div>
+    <h1>Nuevo paciente</h1>
+    <form th:action="@{/pacientes}" th:object="${paciente}" method="post">
+        <p>Nombre: <input type="text" th:field="*{nombre}" required></p>
+        <p>Documento: <input type="text" th:field="*{documento}" required></p>
+        <p>Telefono: <input type="text" th:field="*{telefono}" required></p>
+        <button type="submit">Guardar</button>
+        <a th:href="@{/pacientes}">Cancelar</a>
+    </form>
+</body>
+</html>

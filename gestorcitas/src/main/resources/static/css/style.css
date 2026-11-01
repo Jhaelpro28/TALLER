@@ -1,0 +1,367 @@
+
+
+:root {
+    --marino: #14213d;
+    --marino-2: #22345c;
+    --fondo: #f4f5f7;
+    --papel: #ffffff;
+    --tinta: #1a2238;
+    --suave: #5f6b85;
+    --linea: #dde1ea;
+    --ambar: #fca311;
+    --enlace: #1f4fb2;
+
+    --pendiente: #a85a00;
+    --completada: #0f7b4f;
+    --cancelada: #b3261e;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    padding: 2rem 2rem 3rem 16.5rem;  
+    background: var(--fondo);
+    color: var(--tinta);
+    font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+    line-height: 1.55;
+}
+
+h1 {
+    margin: 0 0 1.25rem;
+    color: var(--marino);
+    font-size: 1.9rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+/* ----- Menú lateral ----- */
+nav {
+    position: fixed;
+    top: 0; bottom: 0; left: 0;
+    width: 14rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 1.5rem 1rem;
+    overflow-y: auto;
+    background: var(--marino);
+    font-size: 0;                      
+}
+
+nav::before {
+    content: "Gestor de citas";
+    margin: 0 0 1.25rem 0.75rem;
+    color: #fff;
+    font-size: 1.15rem;
+    font-weight: 800;
+}
+
+nav a {
+    padding: 0.6rem 0.75rem;
+    border-left: 4px solid transparent;
+    border-radius: 0 6px 6px 0;
+    color: #c9d2e6;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+nav a:hover {
+    border-left-color: var(--ambar);
+    background: var(--marino-2);
+    color: #fff;
+}
+
+nav strong {
+    margin: 1.1rem 0 0.25rem 0.75rem;
+    color: #8e9bbb;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+/* ----- Enlaces ----- */
+a { color: var(--enlace); }
+
+/*---Nuevo*/
+h1 + p a {
+    display: inline-block;
+    padding: 0.5rem 1.1rem;
+    border-radius: 6px;
+    background: var(--ambar);
+    color: var(--marino);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+h1 + p a:hover { background: #e59200; color: var(--marino); }
+
+/* ----- Tablas ----- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--linea);
+    background: var(--papel);
+}
+
+th, td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--linea);
+    text-align: left;
+    vertical-align: middle;
+}
+
+thead th {
+    border-bottom: 2px solid var(--marino);
+    color: var(--suave);
+    font-size: 0.9rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+tbody tr:hover { background: #fdf6e6; }
+
+/* ----- Formularios ----- */
+form p { margin: 0 0 1rem; }
+
+form:not([style]) {
+    max-width: 32rem;
+    padding: 1.5rem;
+    border: 1px solid var(--linea);
+    border-top: 4px solid var(--ambar);
+    border-radius: 8px;
+    background: var(--papel);
+}
+
+input[type="text"],
+input[type="datetime-local"],
+select {
+    display: block;
+    width: 100%;
+    margin-top: 0.3rem;
+    padding: 0.55rem 0.7rem;
+    border: 1px solid #b9c0d0;
+    border-radius: 6px;
+    background: #fff;
+    color: var(--tinta);
+    font: inherit;
+}
+
+:focus-visible {
+    outline: 3px solid var(--ambar);
+    outline-offset: 2px;
+}
+
+/* ----- Botones ----- */
+button {
+    padding: 0.5rem 1.1rem;
+    border: 1px solid var(--marino);
+    border-radius: 6px;
+    background: var(--marino);
+    color: #fff;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+button:hover { background: var(--marino-2); }
+
+td form { margin-left: 0.4rem; }
+
+td button {
+    padding: 0.25rem 0.65rem;
+    font-size: 0.9rem;
+}
+
+/* "Cancelar" de la tabla: borde rojo */
+td form + form button {
+    background: transparent;
+    border-color: var(--cancelada);
+    color: var(--cancelada);
+}
+
+td form + form button:hover { background: #fdecea; }
+
+form button + a { margin-left: 1rem; }
+
+/* ----- Estados de la cita (clases opcionales): punto de color + texto ----- */
+.estado {
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.estado::before {
+    content: "";
+    display: inline-block;
+    width: 0.6rem;
+    height: 0.6rem;
+    margin-right: 0.45rem;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.estado-PENDIENTE  { color: var(--pendiente); }
+.estado-COMPLETADA { color: var(--completada); }
+.estado-CANCELADA  { color: var(--cancelada); }
+
+/* ----- Detalle de la cita ----- */
+body > div > p {
+    display: flex;
+    max-width: 36rem;
+    margin: 0;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--linea);
+}
+
+body > div > p strong {
+    min-width: 9.5rem;
+    color: var(--suave);
+}
+
+body > div + a,
+body > a {
+    display: inline-block;
+    margin-top: 1.25rem;
+}
+
+/* ----- Pantallas pequeñas: el menú pasa arriba ----- */
+@media (max-width: 760px) {
+    body { padding: 0 1rem 2rem; }
+
+    nav {
+        position: static;
+        width: auto;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin: 0 -1rem 1.25rem;
+        padding: 0.5rem 1rem;
+    }
+
+    nav::before, nav strong { display: none; }
+
+    nav a {
+        padding: 0.5rem 0.6rem;
+        border-left: 0;
+        border-bottom: 3px solid transparent;
+        border-radius: 0;
+    }
+
+    nav a:hover { border-bottom-color: var(--ambar); }
+
+    h1 { font-size: 1.6rem; }
+    table { display: block; overflow-x: auto; }
+}
+.ficha {
+    max-width: 40rem;
+    margin: 0 0 1.5rem;
+    border: 1px solid var(--linea, #d6dedc);
+    border-left: 5px solid var(--acento, var(--ambar, #0e6b63));
+    border-radius: 6px;
+    background: var(--papel, #fff);
+}
+ 
+/* Cabecera: título + estado */
+.ficha-cabecera {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    padding: 1.25rem 1.5rem 0;
+}
+ 
+.ficha-cabecera h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+ 
+.ficha-id {
+    color: var(--suave, var(--tinta-suave, #5f6b85));
+    font-weight: 600;
+}
+ 
+/* Fecha y hora: lo primero que se lee */
+.ficha-fecha {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25rem 0.9rem;
+    padding: 1rem 1.5rem 1.25rem;
+    border-bottom: 1px solid var(--linea, #d6dedc);
+}
+ 
+.fecha-dia {
+    font-size: 2.1rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+}
+ 
+.fecha-hora {
+    color: var(--suave, var(--tinta-suave, #5f6b85));
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+ 
+/* Datos: paciente y doctor en dos columnas */
+.ficha-datos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem 2rem;
+    margin: 0;
+    padding: 1.25rem 1.5rem;
+}
+ 
+.ficha-datos dt {
+    color: var(--suave, var(--tinta-suave, #5f6b85));
+    font-size: 0.9rem;
+}
+ 
+.ficha-datos dd {
+    margin: 0.1rem 0 0;
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+ 
+/* Acciones */
+.ficha-acciones {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--linea, #d6dedc);
+}
+ 
+.ficha-acciones form {          /* quita el aspecto de tarjeta de los formularios */
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    max-width: none;
+}
+ 
+.ficha-acciones .btn-cancelar {
+    background: transparent;
+    border-color: #b3261e;
+    color: #b3261e;
+}
+ 
+.ficha-acciones .btn-cancelar:hover { background: #fdecea; }
+ 
+.ficha-acciones > a { margin-left: auto; }
+ 
+/* Cita no encontrada */
+.ficha-vacia { padding: 1.5rem; }
+.ficha-vacia h1 { margin: 0 0 0.5rem; font-size: 1.4rem; }
+.ficha-vacia p { margin: 0; }
+.ficha-vacia a { display: inline-block; margin-top: 0.9rem; }
+ 
+@media (max-width: 560px) {
+    .ficha-datos { grid-template-columns: 1fr; }
+    .fecha-dia { font-size: 1.7rem; }
+    .ficha-acciones > a { margin-left: 0; }
+}

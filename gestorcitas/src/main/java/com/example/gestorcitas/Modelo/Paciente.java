@@ -1,14 +1,22 @@
 package com.example.gestorcitas.Modelo;
 
+import jakarta.persistence.*;
+
+
+@Entity 
 public class Paciente {
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false, length = 100)
     private String nombre;
+    @Column(nullable = false, unique = true, length=20)
     private String documento;
     private String telefono;
 
 
-    public Paciente(Long id, String nombre, String documento, String telefono) {
-       this.id = id;
+    public Paciente(){}
+    public Paciente(String nombre, String documento, String telefono) {
        this.nombre = nombre;
        this.documento = documento;
        this.telefono = telefono;

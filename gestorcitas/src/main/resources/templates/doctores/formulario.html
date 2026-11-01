@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo documento</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div th:replace="~{fragments/nav :: nav}"></div>
+    <h1>Nuevo Doctor</h1>
+    <form th:action="@{/doctores}" th:object="${doctor}" method="post">
+        <p>Nombre: <input type="text" th:field="*{nombre}" required></p>
+        <p>Especialidad: <input type="text" th:field="*{especialidad}" required></p>
+        <button type="submit">Guardar</button>
+        <a th:href="@{/doctores}">Cancelar</a>
+    </form>
+</body>
+</html>

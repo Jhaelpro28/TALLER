@@ -2,7 +2,10 @@
     import org.springframework.stereotype.Controller;
     import org.springframework.ui.Model;
     import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.gestorcitas.Modelo.Doctor;
     import com.example.gestorcitas.service.DoctorService;
 
 
@@ -21,7 +24,16 @@
         model.addAttribute("doctores", doctorService.listar());
         return "doctores/lista";
         }
-        
+        @GetMapping("/doctores/nuevo")
+        public String formulario(Model model){
+            model.addAttribute("doctor", new Doctor());
+            return "doctores/formulario";
+        }
+        @PostMapping("/doctores")
+        public String guardar(@ModelAttribute Doctor doctor){
+            doctorService.guardar(doctor);
+            return "redirect:/doctores";
+        }
 
         
     }
